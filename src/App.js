@@ -6,12 +6,14 @@ import ProductDetail from './components/ProductDetail';
 function App() {
   return (
     <BrowserRouter>
-      <Header/>
-      <Switch>
-        <Route exact path="/" component={Products}/>
-        <Route exact path="/productdetail/:id" component={ProductDetail}/>
-        <Redirect to="/"/>
-      </Switch>
+      <>
+        <Header/>
+        <Switch>
+          <Route exact path="/" component={Products}/>
+          <Route exact path="/productdetail/:id" component={ProductDetail}/>
+          <Redirect to="/"/>
+        </Switch>
+      </>
     </BrowserRouter>
   );
 }
