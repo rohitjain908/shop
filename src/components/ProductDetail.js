@@ -6,14 +6,20 @@ import { useSelector } from 'react-redux';
 
 
 function ProductDetail(props) {
+  const productid=props.match.params.id;
 
   useEffect(()=>{
-    axios.get(`https://fakestoreapi.com/products/${props.match.params.id}`)
+    const fetchdetails=()=>{
+    axios.get(`https://fakestoreapi.com/products/${productid}`)
     .then((response)=>{
       //console.log(response.data)
       store.dispatch(addProduct(response.data))
     })
-  },[])
+  }
+  fetchdetails();
+  },[productid])
+
+
 
   const product=useSelector((state)=>state.product.product)
   console.log(product)
@@ -28,7 +34,7 @@ function ProductDetail(props) {
     <>
       <div style={{display:'flex',marginTop:'110px'}}>
         <div >
-          <img src={product.image} width="300px"  style={{marginLeft:'100px'}}/>
+          <img src={product.image} width="300px"  style={{marginLeft:'100px'}} alt={product.title}/>
         </div>
         <div style={{marginRight:'50px',marginLeft:'200px'}}>
           <h5>{product.title}</h5>
